@@ -1,0 +1,31 @@
+# fly.toml file generated for vitoria-example on 2023-01-31T16:29:30-03:00
+
+app = "vitoria-example"
+processes = []
+
+[env]
+
+# HTTP
+[experimental]
+  auto_rollback = true
+
+[[services]]
+  internal_port = 8080
+  protocol = "tcp"
+
+  [[services.ports]]
+    handlers = ["http"]
+    port = "80"
+
+  [[services.ports]]
+    handlers = ["tls", "http"]
+    port = "443"
+
+# gRPC
+[[services]]
+  internal_port = 50051
+  protocol = "tcp"
+
+  [[services.ports]]
+    handlers = []
+    port = 9090
